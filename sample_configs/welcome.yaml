@@ -1,0 +1,7 @@
+# Sample config file for plugins/welcome.py
+#
+# the format is '<nick_regexp>': '<welcome_message>'
+
+nick1: 'hey, Nick is here!'
+'robert|bob': "Have no fear, Bob's here!"
+someoneelse: 'Fear me!'

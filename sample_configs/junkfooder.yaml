@@ -1,0 +1,12 @@
+irc:
+    server: 'irc.acme.test'
+    # if not specified, defaults to 6667
+    port: 6669
+    channel: '#dev'
+    # optional channel key
+    channel_key: '123'
+    nick: 'bot2000nick'
+    realname: 'HAL 9000'
+    ident: 'hal9000'
+    # for NickServ, optional
+    nick_password: 'Junkf00'
