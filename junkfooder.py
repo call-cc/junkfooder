@@ -13,6 +13,7 @@ from twisted.words.protocols import irc
 
 
 CONFIG_FILE = 'junkfooder.yaml'
+RECONNECT_TIME = 60
 
 
 class JunkfooderBot(irc.IRCClient):
@@ -84,7 +85,7 @@ class JunkfooderBotFactory(protocol.ClientFactory):
         connector.connect()
 
     def clientConnectionFailed(self, connector, reason):
-        reactor.stop()
+        reactor.callLater(RECONNECT_TIME, connector.connect)
 
 
 if __name__ == '__main__':
