@@ -3,14 +3,15 @@ import time
 
 
 def bk(irc, user, target, msg):
-    menu = ['Whopper Cheese',
-            'Western Whooper',
-            'Cheeseburger XXL',
-            'Chicken Whopper',
+    menu = ['Big King Chicken',
+            'Grill Steakhouse',
+            'Big King',
+            'Whopper cheese + bacon',
             'Whopper',
-            'Fish King',
-            'Deluxe Chicken']
+            'Deluxe Chicken',
+            'Whopper cheese']
 
+    # Sunday is 0
     day = int(time.strftime('%w'))
     today = time.strftime("%Y.%m.%d")
     line = 'Menu for %s @ Burger King: %s' % (today, menu[day])
