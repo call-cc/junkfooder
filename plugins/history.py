@@ -2,7 +2,7 @@ import plugin
 import time
 
 
-MAX_LINES = 15
+MAX_LINES = 12
 
 
 hist_lines = []
