@@ -3,6 +3,7 @@ import time
 
 
 def bk(irc, user, target, msg):
+    # Sunday is 0th
     menu = ['Big King Chicken',
             'Grill Steakhouse',
             'Big King',
@@ -11,7 +12,6 @@ def bk(irc, user, target, msg):
             'Deluxe Chicken',
             'Whopper cheese']
 
-    # Sunday is 0
     day = int(time.strftime('%w'))
     today = time.strftime("%Y.%m.%d")
     line = 'Menu for %s @ Burger King: %s' % (today, menu[day])
