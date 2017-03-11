@@ -39,4 +39,6 @@ def eightball(irc, user, target, msg):
 
 plugin.add_plugin('^!8ball ', eightball)
 plugin.add_help('!8ball',
-                'The Magic 8-Ball is a toy used for fortune-telling or seeking advice, developed in the 1950s. Example: !8ball Will I have a great day?')
+                'The Magic 8-Ball is a toy used for fortune-telling or seeking' +
+                ' advice, developed in the 1950s. Example: !8ball Will I have' + 
+                ' a great day?')
