@@ -8,7 +8,6 @@ def eightball(irc, user, target, msg):
     nick = user.partition('!')[0]
 
     if len(items) <= 1: #no questions to answer...
-        irc.msg(target, nick + ': Please, ask your question!')
         return
      
     answers = [
