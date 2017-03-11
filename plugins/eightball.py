@@ -4,9 +4,11 @@ import random
 
 def eightball(irc, user, target, msg):
     items = msg.split(' ')
+    
+    nick = user.partition('!')[0]
 
     if len(items) <= 1: #no questions to answer...
-        irc.msg(target, user + ': Please, ask your question!')
+        irc.msg(target, nick + ': Please, ask your question!')
         return
      
     answers = [
@@ -33,7 +35,7 @@ def eightball(irc, user, target, msg):
     ]
 
     rnd = random.randint(0, len(answers) - 1)
-    irc.msg(target, user+': ' + answers[rnd])
+    irc.msg(target, nick + ': ' + answers[rnd])
 
 plugin.add_plugin('^!eightball ', decide)
 plugin.add_help('!eightball',
