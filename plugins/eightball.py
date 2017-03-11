@@ -4,7 +4,8 @@ import random
 
 def eightball(irc, user, target, msg):
     items = msg.split(' ')
-    
+    items = [item for item in items if item != '']
+
     nick = user.partition('!')[0]
 
     if len(items) <= 1: #no questions to answer...
