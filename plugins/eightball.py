@@ -37,6 +37,6 @@ def eightball(irc, user, target, msg):
     rnd = random.randint(0, len(answers) - 1)
     irc.msg(target, nick + ': ' + answers[rnd])
 
-plugin.add_plugin('^!eightball ', decide)
-plugin.add_help('!eightball',
-                'The Magic 8-Ball is a toy used for fortune-telling or seeking advice, developed in the 1950s. Example: !eightball Will I have a great day?')
+plugin.add_plugin('^!8ball ', eightball)
+plugin.add_help('!8ball',
+                'The Magic 8-Ball is a toy used for fortune-telling or seeking advice, developed in the 1950s. Example: !8ball Will I have a great day?')
