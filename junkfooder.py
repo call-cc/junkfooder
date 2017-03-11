@@ -26,7 +26,7 @@ class JunkfooderBot(irc.IRCClient):
 
     def __init__(self):
         # load plug-ins
-        plug_dir = os.path.dirname(__file__) + '/plugins/'
+        plug_dir = os.path.dirname(os.path.abspath(__file__)) + '/plugins/'
         sys.path.append(plug_dir)
         files = glob.glob(plug_dir + '*.py')
         plugs = []
