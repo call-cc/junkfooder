@@ -10,7 +10,7 @@ def eightball(irc, user, target, msg):
 
     if len(items) <= 1: #no questions to answer...
         return
-     
+
     answers = [
     'It is certain',
     'It is decidedly so',
@@ -40,5 +40,5 @@ def eightball(irc, user, target, msg):
 plugin.add_plugin('^!8ball ', eightball)
 plugin.add_help('!8ball',
                 'The Magic 8-Ball is a toy used for fortune-telling or seeking' +
-                ' advice, developed in the 1950s. Example: !8ball Will I have' + 
+                ' advice, developed in the 1950s. Example: !8ball Will I have' +
                 ' a great day?')
