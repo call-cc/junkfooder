@@ -8,6 +8,7 @@ def wp(irc, user, target, msg):
 
     try:
         page = wikipedia.summary(title, sentences=1)
+        page += "For more: " + wikipedia.page(title).url
     except wikipedia.DisambiguationError as e:
         pages = ' | '.join([s.encode('ascii', 'replace')
                             for s in e.options[:10]])
