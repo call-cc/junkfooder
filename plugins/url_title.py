@@ -19,7 +19,9 @@ def get_url_title(irc, user, target, line):
         tree = html.fromstring(page)
         title = tree.xpath('/html/head/title/text()')
         if len(title) >= 1:
-            msg = 'URL title: %s' % title[0].replace('\n',' ')
+            message = title[0].replace('\n',' ')
+            message = re.sub( '\s+', ' ', message).strip()
+            msg = 'URL title: %s' % message
             msg = msg.encode('ascii', 'replace')
             irc.msg(target, msg)
 
