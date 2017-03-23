@@ -30,11 +30,21 @@ plugin.add_help('!wttr',
                 'Fancy weather forecast using wttr.it Example: !wttr Budapest')
 
 def change_ansi_to_irc(strcontent):
-   return strcontent
+    # reset color
+    strcontent = re.sub('\\033\[\dm','\x03' , strcontent)
+    ansi_colors = re.findall(r'(\033[^m]*m)', strcontent) 
+    for color in ansi_colors:
+        strcontent = strcontent.replace(color,change_ansi_graph_to_irc(color))
+   
+    print strcontent
+    return strcontent
 
 def change_ansi_graph_to_irc(ansi_graphic_string): 
-    ansicolor = ansi_graphic_string.split(";")[2].replace("m","")
+    ansicolor = ansi_graphic_string.split(";")
+    ansicolor = ansicolor[2].replace("m","")
     irccolor = convert_colors(ansicolor)
+
+    print ansi_graphic_string, ansicolor, irccolor
     return "\x03" + irccolor
 
 def convert_colors(ansicolor):
