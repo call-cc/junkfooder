@@ -7,7 +7,7 @@ def a38(irc, user, target, msg):
     url = 'http://www.a38.hu/en/restaurant'
     data = fetcher.get_page(url, 'a38.html')
     tree = html.fromstring(data)
-    path = '//div[@class="etterem-content-napiMenu"]/p[2]/strong/text()'
+    path = '//div[@class="foodCard__foodlist"]/text()'
 
     menu = tree.xpath(path)
     if menu == []:
@@ -16,8 +16,7 @@ def a38(irc, user, target, msg):
         return
 
     menu = tree.xpath(path)
-    menu = ''.join(menu)
-    menu = menu.replace('\n', ' | ')
+    menu = ' | '.join(map(str.strip, menu))
 
     line = 'Current A38 menu: %s' % menu
     irc.msg(target, line.encode('ascii', 'replace'))
