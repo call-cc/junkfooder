@@ -5,7 +5,7 @@ import common
 
 
 WELCOME_FILE = 'welcome.yaml'
-WELCOME_TIME = 4 * 3600
+WELCOME_TIME = 12 * 3600
 
 # store timestamps for welcomes
 memory = {}
