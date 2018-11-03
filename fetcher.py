@@ -1,6 +1,6 @@
 # Rewrite in Twisted
 
-import urllib.request
+import requests
 import os.path
 import errno
 import io
@@ -10,15 +10,14 @@ import time
 # cache file expires after this many seconds
 EXPIRY = 3600
 FILE_PREFIX = '/tmp/'
-USER_AGENT = 'User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:63.0) Gecko/20100101 Firefox/63.0'
 
 
 def fetch_page(url):
-    req = urllib.request.Request(url, headers={'User-Agent': USER_AGENT})
-
     try:
-        response = urllib.request.urlopen(req)
-        return response.read()
+        req = requests.get(url)
+        req.raise_for_status()
+
+        return req.text
     except Exception as e:
         err_msg = 'Error while fetching page: "{}": {}'.format(url, e)
         print(err_msg)
