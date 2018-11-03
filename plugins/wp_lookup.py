@@ -10,17 +10,17 @@ def wp(irc, user, target, msg):
         page = wikipedia.summary(title, sentences=1)
         page += " For more: " + wikipedia.page(title).url
     except wikipedia.DisambiguationError as e:
-        pages = ' | '.join([s.encode('ascii', 'replace')
+        pages = ' | '.join([s
                             for s in e.options[:10]])
         results = '"%s" may refer to: %s' % (title, pages)
         irc.msg(target, results)
         return
     except wikipedia.PageError as e:
-        line = 'No such page: %s' % title.encode('ascii', 'replace')
+        line = 'No such page: %s' % title
         irc.msg(target, line)
         return
 
-    page = page.encode('ascii', 'replace')
+    page = page
     irc.msg(target, page)
 
 plugin.add_plugin('^!wp ', wp)

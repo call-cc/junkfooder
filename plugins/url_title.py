@@ -22,7 +22,6 @@ def get_url_title(irc, user, target, line):
             msg = 'URL title: %s' % title[0]
             msg = msg.replace('\n', ' ')
             msg = re.sub( '\s+', ' ', msg).strip()
-            msg = msg.encode('ascii', 'replace')
             irc.msg(target, msg)
 
 plugin.add_plugin('https?://', get_url_title)
