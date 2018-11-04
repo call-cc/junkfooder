@@ -19,7 +19,7 @@ def welcome(irc, user, channel, msg=None):
         # fail gracefully, but uninformatively
         return
 
-    for regexp, message in welcomes.iteritems():
+    for regexp, message in welcomes.items():
         regexp = re.compile(regexp, re.I)
         timestamp = memory.get(regexp, 0)
         if re.search(regexp, user) and timestamp < time.time() - WELCOME_TIME:
