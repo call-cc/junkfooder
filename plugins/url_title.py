@@ -6,7 +6,7 @@ import re
 
 def get_url_title(irc, user, target, line):
     regexp = re.compile(
-	r'^https?://'
+	r'https?://'
 	r'(?:(?:[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?\.)+(?:[A-Z]{2,6}\.?|[A-Z0-9-]{2,}\.?)|'
 	r'localhost|'
 	r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}|'
