@@ -24,7 +24,7 @@ def fetch_page(url):
 
 
 def _store_file(data, cache_file):
-    with io.open(cache_file, 'wb') as f:
+    with io.open(cache_file, 'w') as f:
         f.write(data)
 
 
