@@ -11,8 +11,8 @@ class TestYouTube(TestCase):
         self.assertURLEncodedQuery("find%3Fthis", "find?this")
 
     def test_youtube_content_parsing(self):
-        requests = RequestsMock()
-        youtube = YouTube(requests=requests)
+        urllib = URLLibMock()
+        youtube = YouTube(urllib=urllib)
 
         result = youtube.search("foobar")
 
@@ -21,21 +21,21 @@ class TestYouTube(TestCase):
             self.assertTrue(url.startswith("https://www.youtube.com/watch?v="))
 
     def assertURLEncodedQuery(self, expected_query, original_query):
-        requests = RequestsMock()
-        youtube = YouTube(requests=requests)
+        urllib = URLLibMock()
+        youtube = YouTube(urllib=urllib)
         youtube.search(original_query)
         self.assertEqual(
             "https://www.youtube.com/results?search_query=" + expected_query,
-            requests.url
+            urllib.url
         )
 
 
-class RequestsMock(object):
+class URLLibMock(object):
     def __init__(self, resource='foobar.html'):
         self.result = os.path.join(os.path.dirname(__file__), 'resources', resource)
         self.url = ""
 
-    def get(self, url):
+    def urlopen(self, url):
         self.url = url
         with open(self.result) as f:
             return ResponseMock(f.read())
@@ -44,3 +44,6 @@ class RequestsMock(object):
 class ResponseMock(object):
     def __init__(self, content):
         self.content = content
+
+    def read(self):
+        return self.content

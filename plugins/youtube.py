@@ -1,5 +1,5 @@
 import random
-import requests
+import urllib2
 from lxml import html
 from urllib import urlencode
 
@@ -21,7 +21,7 @@ def _random_from_dict(videos):
 
 class YouTube(object):
     def __init__(self, **kwargs):
-        self.requests = kwargs.get("requests", requests)
+        self.urllib = kwargs.get("urllib", urllib2)
         self.base_url = "https://www.youtube.com"
 
     def search(self, query):
@@ -32,10 +32,10 @@ class YouTube(object):
         search_query = urlencode({
             "search_query": query
         })
-        response = self.requests.get(
+        response = self.urllib.urlopen(
             self.base_url + "/results?" + search_query,
         )
-        return self._parse_video_links_from_string(response.content)
+        return self._parse_video_links_from_string(response.read())
 
     def _parse_video_links_from_string(self, response):
         xpath_query = '//div[@class="yt-lockup-content"]/h3/a[starts-with(@href, "/watch?v=")]'
