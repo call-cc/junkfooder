@@ -2,3 +2,4 @@ twisted
 lxml
 wikipedia
 pyyaml
+requests
