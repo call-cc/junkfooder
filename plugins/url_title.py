@@ -5,14 +5,14 @@ import re
 
 
 def get_url_title(irc, user, target, line):
-    # TODO: better regexp, e.g. parse '#' correctly
-    regexp = re.compile(r'''http[s]?://
-                            (?:[a-zA-Z]
-                             |[0-9]
-                             |[$-_@.&+]
-                             |[!*\(\),]
-                             |(?:%[0-9a-fA-F][0-9a-fA-F])
-                            )+''', re.I | re.X)
+    regexp = re.compile(
+        r'https?://'
+        r'(?:(?:[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?\.)+(?:[A-Z]{2,6}\.?|[A-Z0-9-]{2,}\.?)|'
+        r'localhost|'
+        r'\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}|'
+        r'\[?[A-F0-9]*:[A-F0-9:]+\]?)'
+        r'(?::\d+)?'
+        r'(?:/?\S+)', re.IGNORECASE)
     urls = re.findall(regexp, line)
     for url in urls:
         page = fetcher.fetch_page(url)
@@ -22,7 +22,6 @@ def get_url_title(irc, user, target, line):
             msg = 'URL title: %s' % title[0]
             msg = msg.replace('\n', ' ')
             msg = re.sub( '\s+', ' ', msg).strip()
-            msg = msg.encode('ascii', 'replace')
             irc.msg(target, msg)
 
 plugin.add_plugin('https?://', get_url_title)

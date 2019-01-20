@@ -4,7 +4,7 @@ import subprocess
 
 def fortune(irc, user, target, msg):
     try:
-        output = subprocess.check_output('fortune')
+        output = subprocess.check_output('fortune').decode()
     except Exception as e:
         irc.msg(target, 'Error executing "fortune":' % e)
     lines = output.split('\n')

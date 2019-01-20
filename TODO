@@ -3,6 +3,5 @@ WIP: oraculum.py
 TODO: rewrite fetcher.py for Twisted
 TODO: function for removing cache file in fetcher.py
 TODO: don't parse config file twice in junkfooder.py
-TODO: better URL regexp for url_title.py
 TODO: wikipedia.py uses blocking I/O, ditch it, use fetcher.py + write parser
 TODO: don't depend on current working directory

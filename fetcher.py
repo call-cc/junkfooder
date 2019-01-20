@@ -1,6 +1,6 @@
 # Rewrite in Twisted
 
-import urllib2
+import requests
 import os.path
 import errno
 import io
@@ -14,14 +14,17 @@ FILE_PREFIX = '/tmp/'
 
 def fetch_page(url):
     try:
-        response = urllib2.urlopen(url)
-        return response.read()
+        req = requests.get(url)
+        req.raise_for_status()
+
+        return req.text
     except Exception as e:
-        print('Error while fetching page: %s', e.errno)
+        err_msg = 'Error while fetching page: "{}": {}'.format(url, e)
+        print(err_msg)
 
 
 def _store_file(data, cache_file):
-    with io.open(cache_file, 'wb') as f:
+    with io.open(cache_file, 'w') as f:
         f.write(data)
 
 
