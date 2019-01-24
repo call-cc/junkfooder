@@ -1,8 +1,7 @@
 import random
 import requests
 from lxml import html
-from urllib import urlencode
-
+from urllib.parse import urlencode
 import plugin
 
 
