@@ -1,7 +1,7 @@
 import random
+
 import requests
 from lxml import html
-from urllib import urlencode
 
 import plugin
 
@@ -29,11 +29,11 @@ class YouTube(object):
         :type query: str
         :rtype: dict[str, str]
         """
-        search_query = urlencode({
-            "search_query": query
-        })
         response = self.requests.get(
-            self.base_url + "/results?" + search_query,
+            self.base_url + "/results",
+            params=dict(
+                search_query=query
+            ),
         )
         return self._parse_video_links_from_string(response.content)
 
