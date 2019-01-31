@@ -1,7 +1,8 @@
-import os
 from unittest import TestCase
 
 from plugins.youtube import YouTube
+from tests.resource import suite_resource, content_of
+from tests.request_mock import RequestsMock
 
 
 class TestYouTube(TestCase):
@@ -11,7 +12,7 @@ class TestYouTube(TestCase):
         self.assertURLEncodedQuery({"search_query": "find?this"}, "find?this")
 
     def test_youtube_content_parsing(self):
-        requests = RequestsMock()
+        requests = self._minimal_request_mock()
         youtube = YouTube(requests=requests)
 
         result = youtube.search("foobar")
@@ -22,7 +23,7 @@ class TestYouTube(TestCase):
             self.assertTrue(url.startswith("https://www.youtube.com/watch?v="))
 
     def assertURLEncodedQuery(self, expected_query, original_query):
-        requests = RequestsMock()
+        requests = self._minimal_request_mock()
         youtube = YouTube(requests=requests)
         youtube.search(original_query)
         self.assertEqual(
@@ -31,20 +32,9 @@ class TestYouTube(TestCase):
         )
         self.assertEqual(expected_query, requests.params)
 
-
-class RequestsMock(object):
-    def __init__(self, resource='foobar.html'):
-        self.result = os.path.join(os.path.dirname(__file__), 'resources', resource)
-        self.url = ""
-        self.params = {}
-
-    def get(self, url, **kwargs):
-        self.url = url
-        self.params = kwargs.get("params")
-        with open(self.result) as f:
-            return ResponseMock(f.read())
-
-
-class ResponseMock(object):
-    def __init__(self, content):
-        self.content = content
+    def _minimal_request_mock(self):
+        return RequestsMock(
+            content_of(
+                suite_resource(__file__, "foobar.html")
+            )
+        )
