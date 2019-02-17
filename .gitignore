@@ -3,3 +3,5 @@
 /junkfooder.yaml
 /plugins/welcome.yaml
 facts.dat
+.tox
+.coverage
