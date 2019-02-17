@@ -17,20 +17,20 @@ def fetch_page(url):
         req = requests.get(url)
         req.raise_for_status()
 
-        return req.text
+        return req.content.decode()
     except Exception as e:
         err_msg = 'Error while fetching page: "{}": {}'.format(url, e)
         print(err_msg)
 
 
 def _store_file(data, cache_file):
-    with io.open(cache_file, 'w') as f:
-        f.write(data)
+    with io.open(cache_file, 'wb') as f:
+        f.write(data.encode())
 
 
 def _read_file(cache_file):
-    with io.open(cache_file) as f:
-        return f.read()
+    with io.open(cache_file, 'rb') as f:
+        return f.read().decode()
 
 
 def get_page(url, cache_file):
