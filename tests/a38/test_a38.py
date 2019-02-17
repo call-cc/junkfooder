@@ -54,7 +54,6 @@ class TestA38(TestCase):
         )
         self.assertFalse(menu.endswith(" | "))
 
-
     def assert_message_for(self, response, resource):
         self.assertEqual(response, self.todays_menu_in(resource))
 

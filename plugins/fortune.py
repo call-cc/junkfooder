@@ -13,5 +13,6 @@ def fortune(irc, user, target, msg):
     for line in lines:
         irc.msg(target, line)
 
+
 plugin.add_plugin('^!fortune\Z', fortune)
 plugin.add_help('!fortune', 'Provide a random fortune')

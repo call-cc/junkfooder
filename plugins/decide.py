@@ -16,6 +16,7 @@ def decide(irc, user, target, msg):
     item = item.lstrip().rstrip()
     irc.msg(target, item)
 
+
 plugin.add_plugin('^!decide ', decide)
 plugin.add_help('!decide',
                 'Randomly select an option. Example: !decide tea coffee beer')
