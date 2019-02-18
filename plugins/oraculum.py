@@ -22,5 +22,6 @@ def oraculum_q(irc, user, target, msg):
             # TODO: error handling
             return
 
+
 # plugin.add_plugin('^![+-] ', oraculum)
 plugin.add_plugin('^\? .+', oraculum_q)

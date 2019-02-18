@@ -28,4 +28,5 @@ def welcome(irc, user, channel, msg=None):
             irc.msg(channel, line)
             memory[regexp] = time.time()
 
+
 plugin.add_plugin('', welcome, 'join')
