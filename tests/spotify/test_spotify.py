@@ -28,7 +28,7 @@ class TestSpotify(TestCase):
 
     def test_spotify_uri_resolve(self):
         self.mock_fetcher.fetch_page.return_value = self._fetch_page_resource('spotify.html')
-        expected_title = 'Title: %s' % SPOTIFY_TITLE
+        expected_title = 'Title: %s - %s' % (SPOTIFY_TITLE, SPOTIFY_URL)
         spotify.resolve_spotify_uri(self.irc, 'user', 'target', 'dummy text %s dummy' % SPOTIFY_URI)
 
         self.mock_fetcher.fetch_page.assert_called_with(SPOTIFY_URL)

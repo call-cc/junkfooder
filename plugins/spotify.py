@@ -25,7 +25,7 @@ def resolve_spotify_uri(irc, user, target, line):
         tree = html.fromstring(page)
         title = tree.xpath('/html/head/title/text()')
         if len(title) >= 1:
-            msg = 'Title: %s' % title[0]
+            msg = 'Title: %s - %s' % (title[0], url)
             msg = msg.replace('\n', ' ')
             msg = re.sub(r'\s+', ' ', msg).strip()
             irc.msg(target, msg)
