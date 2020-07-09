@@ -13,5 +13,6 @@ def help(irc, user, target, msg):
     else:
         irc.msg(target, "Usage example: !help !wp")
 
+
 plugin.add_plugin('^!help', help)
 plugin.add_help('!help', 'Help command. Example: !help !wp')

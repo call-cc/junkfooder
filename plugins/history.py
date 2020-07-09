@@ -22,6 +22,7 @@ def history(irc, user, target, msg):
         if len(hist_lines) > MAX_LINES:
             hist_lines.pop(0)
 
+
 plugin.add_plugin('', history)
 plugin.add_help('!history',
                 'Sends you the last %s messages on the channel' % MAX_LINES)
