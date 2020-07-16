@@ -2,8 +2,6 @@ import random
 
 import requests
 from lxml import html
-from lxml.etree import ElementTree
-from lxml.html import Element
 
 import plugin
 
