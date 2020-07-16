@@ -2,6 +2,8 @@ import random
 
 import requests
 from lxml import html
+from lxml.etree import ElementTree
+from lxml.html import Element
 
 import plugin
 
@@ -22,7 +24,7 @@ def _random_from_dict(videos):
 class YouTube(object):
     def __init__(self, **kwargs):
         self.requests = kwargs.get("requests", requests)
-        self.base_url = "https://www.youtube.com"
+        self.base_url = "https://invidio.us"
 
     def search(self, query):
         """
@@ -30,15 +32,15 @@ class YouTube(object):
         :rtype: dict[str, str]
         """
         response = self.requests.get(
-            self.base_url + "/results",
+            self.base_url + "/search",
             params=dict(
-                search_query=query
+                q=query
             ),
         )
         return self._parse_video_links_from_string(response.content)
 
     def _parse_video_links_from_string(self, response):
-        xpath_query = '//div[@class="yt-lockup-content"]/h3/a[starts-with(@href, "/watch?v=")]'
+        xpath_query = '//div[@class="h-box"]/p/a[starts-with(@href, "/watch?v=")]'
 
         tree = html.fromstring(response)
         elements = tree.xpath(xpath_query)
@@ -46,11 +48,15 @@ class YouTube(object):
         return self._process_links_from_elements(elements)
 
     def _process_links_from_elements(self, elements):
+        """
+        :type elements: list[Element]
+        :rtype: dict[str, str]
+        """
         links = {}
 
         for link in elements:
-            url = self.base_url + link.get('href')
-            links[url] = link.get('title')
+            url = "https://www.youtube.com" + link.get('href')
+            links[url] = link.text
 
         return links
 
