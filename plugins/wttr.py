@@ -9,11 +9,9 @@ def wttr(irc, user, target, msg):
     if len(items) <= 1:
         city = "Budapest"
     else:
-        city = items[1].replace(" ", "+")
+        city = "+".join(items[1:])
 
-    wttr = Wttr()
-    reply = wttr.get_wttr(city, nick)
-
+    reply = Wttr().get_wttr(city, nick)
     irc.msg(target, reply)
 
 
@@ -43,13 +41,15 @@ class Wttr:
         return response
 
     def __get_location(self):
-        for line in self.wttr:
-            if line.startswith("Location:"):
-                return line
+        if self.wttr[-4].startswith("Location:"):
+           loc = self.wttr[-4]
+        else:
+            loc = "\n".join(self.wttr[-6:-2])
+        return loc
 
     @staticmethod
     def change_ansi_to_irc(strcontent):
-        strcontent_resetcolor_changed = re.sub(r'\033\[\dm', '\x03', strcontent) #replace?
+        strcontent_resetcolor_changed = re.sub(r'\033\[\dm', '\x03', strcontent)
         all_ansi_colors = set(re.findall(r'(\033[^m]*m)', strcontent_resetcolor_changed))
         for color in all_ansi_colors:
             irc_color = Wttr.change_ansi_graph_to_irc(color)
