@@ -21,6 +21,7 @@ plugin.add_plugin('^!wttr ', wttr)
 plugin.add_help('!wttr',
                 'Fancy weather forecast using wttr.it Example: !wttr Budapest')
 
+
 class Wttr:
     def __init__(self):
         self.nick = ""
@@ -43,7 +44,7 @@ class Wttr:
 
     @staticmethod
     def change_ansi_to_irc(strcontent):
-        strcontent_resetcolor_changed = re.sub('\\033\[\dm', '\x03', strcontent)
+        strcontent_resetcolor_changed = re.sub(r'\033\[\dm', '\x03', strcontent)
         all_ansi_colors = set(re.findall(r'(\033[^m]*m)', strcontent_resetcolor_changed))
         for color in all_ansi_colors:
             irc_color = Wttr.change_ansi_graph_to_irc(color)
@@ -76,5 +77,4 @@ class Wttr:
             ("27", "33", "39", "111"): "12",
             ("214", "208"): "13",
             ("250", "251", "240", "255"): "15"
-
         }
