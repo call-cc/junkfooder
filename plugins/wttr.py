@@ -4,23 +4,23 @@ import re
 
 
 def wttr(irc, user, target, msg):
-    items = msg.split(' ')
     nick = user.partition('!')[0]
-    city = "Budapest"
+    items = msg.split(' ')
+    print(msg)
     if len(items) <= 1:
         city = "Budapest"
     else:
-        city = items[1]
+        city = items[1].replace(" ", "+")
+
     wttr = Wttr()
     reply = wttr.get_wttr(city, nick)
 
     irc.msg(target, reply)
 
 
-plugin.add_plugin('^!wttr ', wttr)
+plugin.add_plugin('^(!wttr)( .*)?$', wttr)
 plugin.add_help('!wttr',
                 'Fancy weather forecast using wttr.it Example: !wttr Budapest')
-
 
 class Wttr:
     def __init__(self):
@@ -31,20 +31,26 @@ class Wttr:
         self.nick = nick
         req = requests.get("http://wttr.in/" + city)
         self.wttr = req.text.split('\n')
-        response = self.format_to_irc()
+        response = self.format_response()
         return response
 
-    def format_to_irc(self):
+    def format_response(self):
         if self.wttr[0].startswith("ERROR"):
             response = self.nick + ": content[0] :("
         else:
-            item = '\n'.join(self.wttr[2:7])
+            location = self.get_location()
+            item = '\n'.join(self.wttr[2:7] + [location])
             response = Wttr.change_ansi_to_irc(item)
         return response
 
+    def get_location(self):
+        for line in self.wttr:
+            if line.startswith("Location:"):
+                return line
+
     @staticmethod
     def change_ansi_to_irc(strcontent):
-        strcontent_resetcolor_changed = re.sub(r'\033\[\dm', '\x03', strcontent)
+        strcontent_resetcolor_changed = re.sub(r'\033\[\dm', '\x03', strcontent) #replace?
         all_ansi_colors = set(re.findall(r'(\033[^m]*m)', strcontent_resetcolor_changed))
         for color in all_ansi_colors:
             irc_color = Wttr.change_ansi_graph_to_irc(color)
