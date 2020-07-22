@@ -6,7 +6,6 @@ import re
 def wttr(irc, user, target, msg):
     nick = user.partition('!')[0]
     items = msg.split(' ')
-    print(msg)
     if len(items) <= 1:
         city = "Budapest"
     else:
@@ -31,19 +30,19 @@ class Wttr:
         self.nick = nick
         req = requests.get("http://wttr.in/" + city)
         self.wttr = req.text.split('\n')
-        response = self.format_response()
+        response = self.__format_response()
         return response
 
-    def format_response(self):
+    def __format_response(self):
         if self.wttr[0].startswith("ERROR"):
-            response = self.nick + ": content[0] :("
+            response = self.nick + ": " + self.wttr[0] + " :("
         else:
-            location = self.get_location()
-            item = '\n'.join(self.wttr[2:7] + [location])
-            response = Wttr.change_ansi_to_irc(item)
+            location = self.__get_location()
+            ansi_content = '\n'.join(self.wttr[2:7] + [location])
+            response = Wttr.change_ansi_to_irc(ansi_content)
         return response
 
-    def get_location(self):
+    def __get_location(self):
         for line in self.wttr:
             if line.startswith("Location:"):
                 return line
