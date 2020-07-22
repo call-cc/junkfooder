@@ -4,4 +4,4 @@ import yaml
 
 def parse_config(config_file):
     with open(config_file) as f:
-        return yaml.load(f)
+        return yaml.load(f,Loader=yaml.FullLoader)
