@@ -19,6 +19,7 @@ plugin.add_plugin('^(!wttr)( .*)?$', wttr)
 plugin.add_help('!wttr',
                 'Fancy weather forecast using wttr.it Example: !wttr Budapest')
 
+
 class Wttr:
     def __init__(self):
         self.nick = ""
@@ -42,7 +43,7 @@ class Wttr:
 
     def __get_location(self):
         if self.wttr[-4].startswith("Location:"):
-           loc = self.wttr[-4]
+            loc = self.wttr[-4]
         else:
             loc = "\n".join(self.wttr[-6:-2])
         return loc
