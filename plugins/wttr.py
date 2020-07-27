@@ -54,8 +54,8 @@ class Wttr:
         all_ansi_colors = set(re.findall(r'(\033[^m]*m)', strcontent_resetcolor_changed))
         for color in all_ansi_colors:
             irc_color = Wttr.change_ansi_graph_to_irc(color)
-            strcontent = strcontent.replace(color, irc_color)
-        return strcontent
+            strcontent_resetcolor_changed = strcontent_resetcolor_changed.replace(color, irc_color)
+        return strcontent_resetcolor_changed
 
     @staticmethod
     def change_ansi_graph_to_irc(ansi_graphic_string):
