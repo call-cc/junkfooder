@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
-
-
-import sys
 import glob
-import random
-import common
-import plugin
-import os.path
 import importlib
+import os.path
+import random
+import sys
+
 from twisted.internet import reactor, protocol
 from twisted.words.protocols import irc
+
+import common
+import plugin
 
 
 CONFIG_FILE = 'junkfooder.yaml'

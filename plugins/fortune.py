@@ -1,5 +1,6 @@
-import plugin
 import subprocess
+
+import plugin
 
 
 def fortune(irc, user, target, msg):
