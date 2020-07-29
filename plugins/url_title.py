@@ -21,7 +21,7 @@ def get_url_title(irc, user, target, line):
         if len(title) >= 1:
             msg = 'URL title: %s' % title[0]
             msg = msg.replace('\n', ' ')
-            msg = re.sub('\s+', ' ', msg).strip()
+            msg = re.sub(r'\s+', ' ', msg).strip()
             irc.msg(target, msg)
 
 
