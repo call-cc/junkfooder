@@ -1,10 +1,11 @@
 # Rewrite in Twisted
 
-import requests
-import os.path
 import errno
 import io
+import os.path
 import time
+
+import requests
 
 
 # cache file expires after this many seconds

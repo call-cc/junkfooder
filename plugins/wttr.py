@@ -1,6 +1,8 @@
-import plugin
-import requests
 import re
+
+import requests
+
+import plugin
 
 
 def wttr(irc, user, target, msg):

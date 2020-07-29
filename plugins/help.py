@@ -1,5 +1,6 @@
-import plugin
 import re
+
+import plugin
 
 
 def help(irc, user, target, msg):

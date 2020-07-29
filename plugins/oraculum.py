@@ -1,6 +1,7 @@
-import plugin
 import pickle
 import re
+
+import plugin
 
 
 FACT_FILE = 'facts.dat'

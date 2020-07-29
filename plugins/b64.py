@@ -1,5 +1,6 @@
-import plugin
 import base64
+
+import plugin
 
 
 def b64(irc, user, target, msg):

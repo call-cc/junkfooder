@@ -1,5 +1,6 @@
-import plugin
 import time
+
+import plugin
 
 
 def bk(irc, user, target, msg):

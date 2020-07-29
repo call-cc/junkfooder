@@ -1,5 +1,6 @@
-import plugin
 import wikipedia
+
+import plugin
 
 
 def wp(irc, user, target, msg):

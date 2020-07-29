@@ -1,6 +1,7 @@
-import plugin
-import fetcher
 from lxml import html
+
+import fetcher
+import plugin
 
 
 def marcello(irc, user, target, msg):

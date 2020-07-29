@@ -1,7 +1,9 @@
-import plugin
-from lxml import html
-import fetcher
 import re
+
+from lxml import html
+
+import fetcher
+import plugin
 
 
 def get_url_title(irc, user, target, line):

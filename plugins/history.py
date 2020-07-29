@@ -1,5 +1,6 @@
-import plugin
 import time
+
+import plugin
 
 
 MAX_LINES = 12

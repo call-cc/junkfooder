@@ -1,5 +1,6 @@
-import plugin
 import random
+
+import plugin
 
 
 def decide(irc, user, target, msg):

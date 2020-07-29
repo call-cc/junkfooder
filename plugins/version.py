@@ -1,5 +1,6 @@
-import plugin
 from sys import version_info as vi
+
+import plugin
 
 
 def j_version(irc, user, target, msg):
