@@ -36,6 +36,13 @@ class TestUrlTitle(TestCase):
 
         self.irc.msg.assert_called_with('target', expected_title)
 
+    def test_url_youtube_title_in_body(self):
+        self.mock_fetcher.fetch_page.return_value = self._fetch_page_resource('youtube_title_in_body.html')
+        expected_title = 'URL title: Youtube: why is title under /html/body/title?'
+        url_title.get_url_title(self.irc, 'user', 'target', 'https://dummyurl.com')
+
+        self.irc.msg.assert_called_with('target', expected_title)
+
     @staticmethod
     def _fetch_page_resource(page):
         return content_of(suite_resource(__file__, page))

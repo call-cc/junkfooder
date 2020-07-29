@@ -17,7 +17,7 @@ def get_url_title(irc, user, target, line):
     for url in urls:
         page = fetcher.fetch_page(url)
         tree = html.fromstring(page)
-        title = tree.xpath('/html/head/title/text()')
+        title = tree.xpath('/html//title/text()')
         if len(title) >= 1:
             msg = 'URL title: %s' % title[0]
             msg = msg.replace('\n', ' ')
