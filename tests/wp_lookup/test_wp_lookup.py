@@ -53,20 +53,20 @@ class TestWikipediaLookup(TestCase):
         self.mock_wikipedia_page.return_value = mock_page
 
         expected_answer = '%s For more: %s' % (NORMAL_SEARCH_SENTENCE, NORMAL_SEARCH_URL)
-        wp_lookup.wp(self.irc, 'user', 'target', '!wp Python programming language')
+        wp_lookup.wikipedia_lookup(self.irc, 'user', 'target', '!wp Python programming language')
 
         self.irc.msg.assert_called_with('target', expected_answer)
 
     def test_disambiguation(self):
         self.mock_wikipedia_summary.side_effect = wikipedia.DisambiguationError('dummy', DISAMBIGUATION_OPTIONS)
-        wp_lookup.wp(self.irc, 'user', 'target', '!wp The Deep')
+        wp_lookup.wikipedia_lookup(self.irc, 'user', 'target', '!wp The Deep')
         expected_answer = DISAMBIGUATION_ANSWER
 
         self.irc.msg.assert_called_with('target', expected_answer)
 
     def test_no_such_page(self):
         self.mock_wikipedia_summary.side_effect = wikipedia.PageError('dummy')
-        wp_lookup.wp(self.irc, 'user', 'target', '!wp GTFO')
+        wp_lookup.wikipedia_lookup(self.irc, 'user', 'target', '!wp GTFO')
         expected_answer = 'No such page: GTFO'
 
         self.irc.msg.assert_called_with('target', expected_answer)
