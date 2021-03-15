@@ -7,7 +7,7 @@ import plugin
 FACT_FILE = 'facts.dat'
 
 
-def oraculum_q(irc, user, target, msg):
+def oraculum_q(irc, _user, target, msg):
     if re.search('^\? .+', msg):
         cmd, topic = msg.split(' ', 1)
         try:

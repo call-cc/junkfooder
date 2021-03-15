@@ -3,7 +3,7 @@ import subprocess
 import plugin
 
 
-def fortune(irc, user, target, msg):
+def fortune(irc, _user, target, _msg):
     try:
         output = subprocess.check_output('fortune').decode()
     except Exception as e:

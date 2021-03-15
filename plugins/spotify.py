@@ -15,7 +15,7 @@ def build_spotify_url_from_uri(uri):
     return URL % (unit, spotify_id)
 
 
-def resolve_spotify_uri(irc, user, target, line):
+def resolve_spotify_uri(irc, _user, target, line):
     regexp = re.compile(
         r'spotify:[a-z]*:[a-zA-Z0-9]*', re.IGNORECASE)
     uris = re.findall(regexp, line)

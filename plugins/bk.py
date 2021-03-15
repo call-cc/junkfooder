@@ -3,7 +3,7 @@ import time
 import plugin
 
 
-def bk(irc, user, target, msg):
+def bk(irc, _user, target, _msg):
     # Sunday is 0th
     menu = ['Big King Chicken',
             'Grill Steakhouse',

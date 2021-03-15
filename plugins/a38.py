@@ -4,7 +4,7 @@ from lxml import html
 import plugin
 
 
-def a38(irc, user, target, msg):
+def a38(irc, _user, target, msg):
     _a38 = A38(_parse_language(msg))
     irc.msg(target, _a38.fetch_todays_menu())
 
