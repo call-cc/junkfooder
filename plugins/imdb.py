@@ -8,7 +8,7 @@ ERROR_FUN = 'That is the story of your life...'
 
 
 def search_imdb(irc, _user, target, line):
-    url = BASE_URL + line
+    url = BASE_URL + line.replace('!imdb ', '')
     page = fetcher.fetch_page(url)
 
     xpath_query = '//a[@class="result__a"]'
@@ -25,3 +25,4 @@ def search_imdb(irc, _user, target, line):
 
 
 plugin.add_plugin('^!imdb ', search_imdb)
+plugin.add_help('!imdb ', 'Search for movie or series or actor/actress etc. in imdb.')
