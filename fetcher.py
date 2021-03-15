@@ -11,11 +11,12 @@ import requests
 # cache file expires after this many seconds
 EXPIRY = 3600
 FILE_PREFIX = '/tmp/'
+HEADERS = {'User-Agent': 'Mozilla/5.0 (X11; Linux; rv:74.0) Gecko/20100101 Firefox/74.0'}
 
 
 def fetch_page(url):
     try:
-        req = requests.get(url)
+        req = requests.get(url, headers=HEADERS)
         req.raise_for_status()
 
         return req.content.decode()
