@@ -3,7 +3,7 @@ import random
 import plugin
 
 
-def decide(irc, user, target, msg):
+def decide(irc, _user, target, msg):
     items = msg.split(' ')
     # return if there are no choices to choose from
     if len(items) <= 2:

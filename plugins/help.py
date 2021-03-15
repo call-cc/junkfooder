@@ -3,7 +3,7 @@ import re
 import plugin
 
 
-def help(irc, user, target, msg):
+def help(irc, _user, target, msg):
     if re.search('^!help\Z', msg):
         doc = 'Available commands: %s' % plugin.get_help()
         irc.msg(target, doc)

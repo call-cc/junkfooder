@@ -12,7 +12,7 @@ WELCOME_TIME = 12 * 3600
 memory = {}
 
 
-def welcome(irc, user, channel, msg=None):
+def welcome(irc, user, channel, _msg=None):
 
     try:
         welcomes = common.parse_config('plugins/' + WELCOME_FILE)

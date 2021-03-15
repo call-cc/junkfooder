@@ -3,7 +3,7 @@ import base64
 import plugin
 
 
-def b64(irc, user, target, msg):
+def b64(irc, _user, target, msg):
     cmd, text = msg.split(None, 1)
 
     # Lazy

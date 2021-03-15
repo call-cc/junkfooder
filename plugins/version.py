@@ -3,7 +3,7 @@ from sys import version_info as vi
 import plugin
 
 
-def j_version(irc, user, target, msg):
+def j_version(irc, _user, target, _msg):
     v1 = vi.major
     v2 = vi.minor
     v3 = vi.micro

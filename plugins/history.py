@@ -9,7 +9,7 @@ MAX_LINES = 12
 hist_lines = []
 
 
-def history(irc, user, target, msg):
+def history(irc, user, _target, msg):
     usernick, _ = user.split('!', 1)
 
     if msg == '!history':

@@ -4,7 +4,7 @@ import fetcher
 import plugin
 
 
-def marcello(irc, user, target, msg):
+def marcello(irc, _user, target, _msg):
     url = 'https://www.marcelloetterem.hu'
     data = fetcher.get_page(url, 'marcello.tmp')
     tree = html.fromstring(data)

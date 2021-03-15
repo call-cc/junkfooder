@@ -6,7 +6,7 @@ from lxml import html
 import plugin
 
 
-def youtube(irc, user, target, msg):
+def youtube(irc, _user, target, msg):
     videos = YouTube().search(msg)
     title, url = _random_from_dict(videos)
     irc.msg(target, url + " - " + title)
