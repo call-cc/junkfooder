@@ -24,5 +24,5 @@ def search_imdb(irc, _user, target, line):
     irc.msg(target, answer)
 
 
-plugin.add_plugin('^!imdb ', search_imdb)
+plugin.add_plugin('^!imdb', search_imdb)
 plugin.add_help('!imdb ', 'Search for movie or series or actor/actress etc. in imdb.')
