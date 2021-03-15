@@ -22,7 +22,7 @@ def _random_from_dict(videos):
 class YouTube(object):
     def __init__(self, **kwargs):
         self.requests = kwargs.get("requests", requests)
-        self.base_url = "https://invidio.us"
+        self.base_url = "https://invidious.snopyta.org"
 
     def search(self, query):
         """
@@ -59,4 +59,5 @@ class YouTube(object):
         return links
 
 
-plugin.add_plugin('^!yt ', youtube)
+plugin.add_plugin('^!yt', youtube)
+plugin.add_help('!yt', 'Search for a youtube video and select a *random* from the search result.')
