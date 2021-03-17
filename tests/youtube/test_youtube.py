@@ -35,7 +35,7 @@ class TestYouTube(TestCase):
         youtube = YouTube(requests=requests)
         youtube.search(original_query)
         self.assertEqual(
-            "https://invidio.us/search",
+            "https://invidious.snopyta.org/search",
             requests.url
         )
         self.assertEqual(expected_query, requests.params)
