@@ -1,0 +1,14 @@
+name: test
+on: [push]
+jobs:
+  tox-tests:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install tox
+        run: python3 -m pip install tox
+      - name: Run flake8
+        run: tox -e flake8
+      - name: Run unit tests (py38)
+        run: tox -e py38
+
