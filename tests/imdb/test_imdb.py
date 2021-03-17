@@ -4,6 +4,8 @@ from unittest import TestCase
 from plugins import imdb
 from tests.resource import suite_resource, content_of
 
+ERROR_ANSWER = 'That is the story of your life, isn\'t it?'
+
 
 class TestIMDB(TestCase):
 
@@ -23,9 +25,13 @@ class TestIMDB(TestCase):
 
     def test_imdb_empty_result(self):
         self.mock_fetcher.fetch_page.return_value = 'empty'
-        expected_answer = 'That is the story of your life...'
         imdb.search_imdb(self.irc, 'user', 'target', 'empty')
-        self.irc.msg.assert_called_with('target', expected_answer)
+        self.irc.msg.assert_called_with('target', ERROR_ANSWER)
+
+    def test_fetcher_got_403(self):
+        self.mock_fetcher.fetch_page.return_value = None
+        imdb.search_imdb(self.irc, 'user', 'target', 'empty')
+        self.irc.msg.assert_called_with('target', ERROR_ANSWER)
 
     @staticmethod
     def _fetch_page_resource(page):
