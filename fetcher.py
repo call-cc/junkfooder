@@ -15,8 +15,11 @@ HEADERS = {'User-Agent': 'Mozilla/5.0 (X11; Linux; rv:74.0) Gecko/20100101 Firef
 
 
 def fetch_page(url):
+    cookie_jar = requests.cookies.RequestsCookieJar()
+    # set CONSENT cookie with some random value to mimic we have accepted the cookies
+    cookie_jar.set('CONSENT', 'YES+cb.202110101-12-p0.en+FX+035')
     try:
-        req = requests.get(url, headers=HEADERS)
+        req = requests.get(url, headers=HEADERS, cookies=cookie_jar)
         req.raise_for_status()
 
         return req.content.decode()
