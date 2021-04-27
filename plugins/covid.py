@@ -13,14 +13,12 @@ def covid(irc, user, target, msg):
         urllib.request.urlretrieve(url, filename)
     except urllib.error.HTTPError:
         msg = "HTTPError, Try again later! (ping skullyka)"
-    except:
-        msg = "Ping skullyka! Gaz van!"
     else:
         data = []
         with open(filename, 'r') as file:
             my_reader = csv.reader(file, delimiter=',')
             for row in my_reader:
-                    pass
+                pass
             data = row
 
         msg = create_msg(data)
@@ -30,16 +28,11 @@ def covid(irc, user, target, msg):
     irc.msg(target, nick + ': ' + msg)
 
 
-
 def create_msg(data):
     date = data[0]
-    total_cases = data[1]
     new_cases = data[2]
-    passed_away = data[3]
     new_passed_away = data[17]
-    healed = data[4]
     new_healed = data[18]
-    tests = data[5]
     new_tests = data[15]
     active_cases = data[11]
     ventillator = data[20]
@@ -61,6 +54,7 @@ def create_msg(data):
     msg += ' | második oltás napi ' + new_second_vaccine + ' ||'
 
     return msg
+
 
 plugin.add_plugin('^!covid', covid)
 plugin.add_help('!covid',
