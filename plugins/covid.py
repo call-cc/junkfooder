@@ -1,7 +1,8 @@
-import urllib.request
 import os
-import plugin
 import csv
+import urllib
+
+import plugin
 
 
 def covid(irc, user, target, msg):
@@ -17,6 +18,7 @@ def covid(irc, user, target, msg):
         data = []
         with open(filename, 'r') as file:
             my_reader = csv.reader(file, delimiter=',')
+            row = ''
             for row in my_reader:
                 pass
             data = row
@@ -35,10 +37,10 @@ def create_msg(data):
     new_healed = data[18]
     new_tests = data[15]
     active_cases = data[11]
-    ventillator = data[20]
+    ventilator = data[20]
     vaccinated = data[32]
     new_vaccinated = data[33]
-    second_vaccne = data[35]
+    second_vaccine = data[35]
     new_second_vaccine = data[36]
 
     msg = date + ' napi adatok'
@@ -47,10 +49,10 @@ def create_msg(data):
     msg += ' | gyógyult ' + new_healed
     msg += ' | tesztek ' + new_tests
     msg += ' | aktív esetek ' + active_cases
-    msg += ' | lélegeztetőn ' + ventillator
+    msg += ' | lélegeztetőn ' + ventilator
     msg += ' | oltottak ' + vaccinated
     msg += ' | napi oltottak ' + new_vaccinated
-    msg += ' | második oltás ' + second_vaccne
+    msg += ' | második oltás ' + second_vaccine
     msg += ' | második oltás napi ' + new_second_vaccine + ' ||'
 
     return msg
